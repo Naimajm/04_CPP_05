@@ -6,7 +6,7 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 22:24:27 by juagomez          #+#    #+#             */
-/*   Updated: 2025/12/02 13:37:28 by juagomez         ###   ########.fr       */
+/*   Updated: 2025/12/02 22:18:44 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 // forma canonica
 Bureaucrat::Bureaucrat(void)
-	: _name("default Bureaucrat"), _grade(150)
-{
+	: _name(DEFAULT_NAME), _grade(DEFAULT_GRADE)
+{	
 	std::cout << BUREAU_ID << CONSTRUCTOR_MSG << this->_name << std::endl;
 }
 
@@ -27,10 +27,16 @@ Bureaucrat::Bureaucrat(const Bureaucrat &reference)
 
 Bureaucrat	&Bureaucrat::operator= (const Bureaucrat &reference)
 {
-	// valñidar autoreferencia
+	// validar autoreferencia
 	if (this != &reference)
 	{
-		this->_name		= reference._name;
+		//this->_name	= reference._name;	// _name no se copia porque es const
+
+		// No necesitamos validar nada porque 'reference' ya es un Bureaucrat válido ¡¡¡¡		
+		/* if (reference.getGrade() < MAX_GRADE)						// validar limite maximo
+			throw (Bureaucrat::GradeTooHighException());		
+		if (reference.getGrade() > MIN_GRADE)						// validar limite minimo
+			throw (Bureaucrat::GradeTooLowException()); */
 		this->_grade 	= reference._grade;
 	}
 	std::cout << BUREAU_ID << ASSIGNMENT_MSG << this->_name << std::endl;
@@ -44,42 +50,64 @@ Bureaucrat::~Bureaucrat(void)
 // forma canonica
 
 // constructor parametrico 
-Bureaucrat::Bureaucrat(const std::string name)
-	:	_name(name), _grade(150)
-{
+Bureaucrat::Bureaucrat(const std::string &name, int grade)
+	:	_name(name)
+{	
+	if (grade < MAX_GRADE)							// validar limite maximo
+		throw (GradeTooHighException());	
+	if (grade > MIN_GRADE)							// validar limite minimo
+		throw (GradeTooLowException());		
+
+	this->_grade = grade;
+
 	std::cout << BUREAU_ID << NAME_CONSTRUCTOR_MSG << this->_name << std::endl;	
 }
 
-// metodos miembros
-std::string	Bureaucrat::getName(void) const
+// metodos miembros ---------------------
+
+std::string		Bureaucrat::getName(void) const
 {
 	return (this->_name);
 }
 
-int		Bureaucrat::getGrade(void) const
+int				Bureaucrat::getGrade(void) const
 {
 	return (this->_grade);
 }
 
-void	Bureaucrat::incrementGrade(void)
+void			Bureaucrat::setGrade(int grade)
 {
+	if (grade < MAX_GRADE)							// validar limite maximo
+		throw (GradeTooHighException());	
+	if (grade > MIN_GRADE)							// validar limite minimo
+		throw (GradeTooLowException());		
+	this->_grade = grade;
+}
+
+void	Bureaucrat::incrementGrade(void)
+{	
+	if (this->_grade - 1 < MAX_GRADE)			// validar limite maximo
+		throw (GradeTooHighException());
 	this->_grade--;
 }
 
 void	Bureaucrat::decrementGrade(void)
-{
-	this->_grade++;
+{	
+	if (this->_grade + 1 > MIN_GRADE)			// validar limite minimo
+		throw (GradeTooLowException());
+	this->_grade++;	
 }
 
-// Excepciones
-void	Bureaucrat::GradeTooHighException(void)
+// CLASS  Excepciones ---------------------------------
+// SOBREESCRITURA IMPLEMENTACION METODO HEREDADO WHAT()
+const char* Bureaucrat::GradeTooHighException::what() const throw()
 {
-	
+	return (ERROR_HIGH_GRADE_MSG);
 }
 
-void	Bureaucrat::GradeTooLowException(void)
+const char* Bureaucrat::GradeTooLowException::what() const throw()
 {
-
+	return (ERROR_LOW_GRADE_MSG);
 }
 
 // ostream -> clase base flujos salida(cout, cerr, ofstream, ..)- devuelve referencia del mismo objeto para permitir encadenamientos y porque no es copiable
