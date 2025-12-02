@@ -6,7 +6,7 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 22:18:10 by juagomez          #+#    #+#             */
-/*   Updated: 2025/12/02 22:33:26 by juagomez         ###   ########.fr       */
+/*   Updated: 2025/12/02 22:25:32 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int	main(void)
 	{	
 		std::cout << "\n===== BASIC TEST =====\n" << std::endl;
 		
-		Bureaucrat	default_Bureau;							
-		Bureaucrat	name_Bureau	= Bureaucrat("pepe", 24);	
-		Bureaucrat	copy_Bureau	= Bureaucrat(name_Bureau);	
+		Bureaucrat	default_Bureau;							// constructor default
+		Bureaucrat	name_Bureau	= Bureaucrat("pepe", 24);	// parametric constructor 
+		Bureaucrat	copy_Bureau	= Bureaucrat(name_Bureau);	// copy constructor 
 		std::cout << std::endl;
 
 		std::cout << name_Bureau;	
@@ -35,7 +35,7 @@ int	main(void)
 		{
 			Bureaucrat bob("Bob", -2);
 		}
-		catch (std::exception &exceptionValue)  
+		catch (std::exception &exceptionValue)  // capturamos el objeto excepción y mostramos su mensaje
 		{			
 			std::cerr << "Exception: " << exceptionValue.what() << std::endl;
 		}
@@ -48,9 +48,10 @@ int	main(void)
 			std::cout << bob;		
 			bob.incrementGrade();
 			std::cout << bob;
+			//bob.incrementGrade(); 			// Intenta pasar a 0 -> LANZA EXCEPCIÓN
 			bob.setGrade(0);
 		}
-		catch (std::exception &exceptionValue)
+		catch (std::exception &exceptionValue) 	// capturamos el objeto excepción y mostramos su mensaje
 		{
 			std::cerr << "Exception: " << exceptionValue.what() << std::endl;
 		}
@@ -68,5 +69,6 @@ int	main(void)
 			std::cerr << "Exception: " << exceptionValue.what() << std::endl; 
 		}
 	}
+
 	return (0);
 }

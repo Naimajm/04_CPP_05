@@ -6,12 +6,13 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 22:24:27 by juagomez          #+#    #+#             */
-/*   Updated: 2025/12/02 22:35:05 by juagomez         ###   ########.fr       */
+/*   Updated: 2025/12/02 22:18:44 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include  "./include/Bureaucrat.hpp"
 
+// forma canonica
 Bureaucrat::Bureaucrat(void)
 	: _name(DEFAULT_NAME), _grade(DEFAULT_GRADE)
 {	
@@ -26,9 +27,18 @@ Bureaucrat::Bureaucrat(const Bureaucrat &reference)
 
 Bureaucrat	&Bureaucrat::operator= (const Bureaucrat &reference)
 {
+	// validar autoreferencia
 	if (this != &reference)
-		this->_grade 	= reference._grade;
+	{
+		//this->_name	= reference._name;	// _name no se copia porque es const
 
+		// No necesitamos validar nada porque 'reference' ya es un Bureaucrat válido ¡¡¡¡		
+		/* if (reference.getGrade() < MAX_GRADE)						// validar limite maximo
+			throw (Bureaucrat::GradeTooHighException());		
+		if (reference.getGrade() > MIN_GRADE)						// validar limite minimo
+			throw (Bureaucrat::GradeTooLowException()); */
+		this->_grade 	= reference._grade;
+	}
 	std::cout << BUREAU_ID << ASSIGNMENT_MSG << this->_name << std::endl;
 	return (*this);
 }
@@ -37,13 +47,15 @@ Bureaucrat::~Bureaucrat(void)
 {
 	std::cout << BUREAU_ID << DESTRUCTOR_MSG << this->_name << std::endl;
 }
+// forma canonica
 
+// constructor parametrico 
 Bureaucrat::Bureaucrat(const std::string &name, int grade)
 	:	_name(name)
 {	
-	if (grade < MAX_GRADE)							
+	if (grade < MAX_GRADE)							// validar limite maximo
 		throw (GradeTooHighException());	
-	if (grade > MIN_GRADE)							
+	if (grade > MIN_GRADE)							// validar limite minimo
 		throw (GradeTooLowException());		
 
 	this->_grade = grade;
@@ -51,6 +63,7 @@ Bureaucrat::Bureaucrat(const std::string &name, int grade)
 	std::cout << BUREAU_ID << NAME_CONSTRUCTOR_MSG << this->_name << std::endl;	
 }
 
+// metodos miembros ---------------------
 
 std::string		Bureaucrat::getName(void) const
 {
@@ -64,28 +77,29 @@ int				Bureaucrat::getGrade(void) const
 
 void			Bureaucrat::setGrade(int grade)
 {
-	if (grade < MAX_GRADE)							
+	if (grade < MAX_GRADE)							// validar limite maximo
 		throw (GradeTooHighException());	
-	if (grade > MIN_GRADE)							
+	if (grade > MIN_GRADE)							// validar limite minimo
 		throw (GradeTooLowException());		
 	this->_grade = grade;
 }
 
 void	Bureaucrat::incrementGrade(void)
 {	
-	if (this->_grade - 1 < MAX_GRADE)			
+	if (this->_grade - 1 < MAX_GRADE)			// validar limite maximo
 		throw (GradeTooHighException());
 	this->_grade--;
 }
 
 void	Bureaucrat::decrementGrade(void)
 {	
-	if (this->_grade + 1 > MIN_GRADE)			
+	if (this->_grade + 1 > MIN_GRADE)			// validar limite minimo
 		throw (GradeTooLowException());
 	this->_grade++;	
 }
 
-
+// CLASS  Excepciones ---------------------------------
+// SOBREESCRITURA IMPLEMENTACION METODO HEREDADO WHAT()
 const char* Bureaucrat::GradeTooHighException::what() const throw()
 {
 	return (ERROR_HIGH_GRADE_MSG);
@@ -96,6 +110,7 @@ const char* Bureaucrat::GradeTooLowException::what() const throw()
 	return (ERROR_LOW_GRADE_MSG);
 }
 
+// ostream -> clase base flujos salida(cout, cerr, ofstream, ..)- devuelve referencia del mismo objeto para permitir encadenamientos y porque no es copiable
 std::ostream	&operator<< (std::ostream &stream, const Bureaucrat &reference)
 {
 	stream << reference.getName() << BUREAU_DISPLAY_MSG << reference.getGrade() << std::endl;

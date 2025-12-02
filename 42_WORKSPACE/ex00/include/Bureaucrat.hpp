@@ -6,7 +6,7 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 22:24:17 by juagomez          #+#    #+#             */
-/*   Updated: 2025/12/02 22:29:32 by juagomez         ###   ########.fr       */
+/*   Updated: 2025/12/02 22:05:11 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,16 @@
 class Bureaucrat
 {
 	public:
-		Bureaucrat(void);											
-		Bureaucrat(const Bureaucrat &reference);					
-		Bureaucrat	&operator= (const Bureaucrat &reference);		
+		// forma canonica
+		Bureaucrat(void);											// constructor poe defecto
+		Bureaucrat(const Bureaucrat &reference);					// constructor copia
+		Bureaucrat	&operator= (const Bureaucrat &reference);		// sobrecarga asignacion
 		~Bureaucrat(void);
+		// forma canonica
 		
-		Bureaucrat(const std::string &name, int grade); 
+		Bureaucrat(const std::string &name, int grade); // constructor parametrico 
 
+		// metodos miembros
 		std::string		getName(void) const;
 		int 			getGrade(void) const;
 		void			setGrade(int grade);
@@ -49,9 +52,13 @@ class Bureaucrat
 		void	incrementGrade(void);
 		void	decrementGrade(void);
 
+		// class Exception -> objetos heredados de clase base 'exception'
+		// Polimorfismo-> Permite capturar todas las excepciones (estándar y tuyas) en un solo bloque catch (std::exception &e)
 		class	GradeTooHighException : public std::exception
 		{
 			public:
+				// Sobrescribimos el metodo virtual 'what'
+                // const throw() significa que este metodo NO lanzará excepciones
 				virtual const char* what(void) const throw();
 		};
 		class	GradeTooLowException: public std::exception
@@ -62,9 +69,10 @@ class Bureaucrat
 
 	private:
 		const	std::string	_name; 
-		int					_grade;		
+		int					_grade;		// 	[1-150] importancia decreciente
 };
 
+/// sobrecarga del operador de inserción («) 
 std::ostream	&operator<< (std::ostream &stream, const Bureaucrat &reference);
 
 #endif
