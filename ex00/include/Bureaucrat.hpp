@@ -6,7 +6,7 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 22:24:17 by juagomez          #+#    #+#             */
-/*   Updated: 2025/12/02 22:29:32 by juagomez         ###   ########.fr       */
+/*   Updated: 2025/12/03 12:50:05 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@
 # define	DESTRUCTOR_MSG	    	"Destructor: object destroyed.\t"
 # define	NAME_CONSTRUCTOR_MSG	"Parametric Constructor: object created.\t"
 
-# define	DEFAULT_NAME			"default name"
-# define	DEFAULT_GRADE			150
+# define	BUREAU_DEFAULT_NAME		"default name"
+# define	BUREAU_DEFAULT_GRADE	150
 
 # define	BUREAU_DISPLAY_MSG		", bureaucrat grade "
-# define 	MIN_GRADE				150
-# define 	MAX_GRADE				1
-# define 	ERROR_HIGH_GRADE_MSG	"Error: Grade is too high (maximum is 1)."
-# define 	ERROR_LOW_GRADE_MSG		"Error: Grade is too low (minimum is 150)."
+# define 	BUREAU_MIN_GRADE		150
+# define 	BUREAU_MAX_GRADE		1
+# define 	BUREAU_ERROR_HIGH_GRADE	"Error: Grade is too high (maximum is 1)."
+# define 	BUREAU_ERROR_LOW_GRADE	"Error: Grade is too low (minimum is 150)."
 
 class Bureaucrat
 {

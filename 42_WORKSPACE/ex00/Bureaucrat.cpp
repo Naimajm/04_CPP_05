@@ -6,7 +6,7 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 22:24:27 by juagomez          #+#    #+#             */
-/*   Updated: 2025/12/02 22:18:44 by juagomez         ###   ########.fr       */
+/*   Updated: 2025/12/03 12:08:35 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // forma canonica
 Bureaucrat::Bureaucrat(void)
-	: _name(DEFAULT_NAME), _grade(DEFAULT_GRADE)
+	: _name(BUREAU_DEFAULT_NAME), _grade(BUREAU_DEFAULT_GRADE)
 {	
 	std::cout << BUREAU_ID << CONSTRUCTOR_MSG << this->_name << std::endl;
 }
@@ -53,9 +53,9 @@ Bureaucrat::~Bureaucrat(void)
 Bureaucrat::Bureaucrat(const std::string &name, int grade)
 	:	_name(name)
 {	
-	if (grade < MAX_GRADE)							// validar limite maximo
+	if (grade < BUREAU_MAX_GRADE)							// validar limite maximo
 		throw (GradeTooHighException());	
-	if (grade > MIN_GRADE)							// validar limite minimo
+	if (grade > BUREAU_MIN_GRADE)							// validar limite minimo
 		throw (GradeTooLowException());		
 
 	this->_grade = grade;
@@ -77,23 +77,23 @@ int				Bureaucrat::getGrade(void) const
 
 void			Bureaucrat::setGrade(int grade)
 {
-	if (grade < MAX_GRADE)							// validar limite maximo
+	if (grade < BUREAU_MAX_GRADE)							// validar limite maximo
 		throw (GradeTooHighException());	
-	if (grade > MIN_GRADE)							// validar limite minimo
+	if (grade > BUREAU_MIN_GRADE)							// validar limite minimo
 		throw (GradeTooLowException());		
 	this->_grade = grade;
 }
 
 void	Bureaucrat::incrementGrade(void)
 {	
-	if (this->_grade - 1 < MAX_GRADE)			// validar limite maximo
+	if (this->_grade - 1 < BUREAU_MAX_GRADE)			// validar limite maximo
 		throw (GradeTooHighException());
 	this->_grade--;
 }
 
 void	Bureaucrat::decrementGrade(void)
 {	
-	if (this->_grade + 1 > MIN_GRADE)			// validar limite minimo
+	if (this->_grade + 1 > BUREAU_MIN_GRADE)			// validar limite minimo
 		throw (GradeTooLowException());
 	this->_grade++;	
 }
@@ -102,12 +102,12 @@ void	Bureaucrat::decrementGrade(void)
 // SOBREESCRITURA IMPLEMENTACION METODO HEREDADO WHAT()
 const char* Bureaucrat::GradeTooHighException::what() const throw()
 {
-	return (ERROR_HIGH_GRADE_MSG);
+	return (BUREAU_ERROR_HIGH_GRADE);
 }
 
 const char* Bureaucrat::GradeTooLowException::what() const throw()
 {
-	return (ERROR_LOW_GRADE_MSG);
+	return (BUREAU_ERROR_LOW_GRADE);
 }
 
 // ostream -> clase base flujos salida(cout, cerr, ofstream, ..)- devuelve referencia del mismo objeto para permitir encadenamientos y porque no es copiable

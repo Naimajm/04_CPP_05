@@ -6,7 +6,7 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 22:24:27 by juagomez          #+#    #+#             */
-/*   Updated: 2025/12/03 12:08:35 by juagomez         ###   ########.fr       */
+/*   Updated: 2025/12/03 16:15:06 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,14 +86,30 @@ void	Bureaucrat::decrementGrade(void)
 }
 
 
-const char* Bureaucrat::GradeTooHighException::what() const throw()
+const char* Bureaucrat::GradeTooHighException::what(void) const throw()
 {
 	return (BUREAU_ERROR_HIGH_GRADE);
 }
 
-const char* Bureaucrat::GradeTooLowException::what() const throw()
+const char* Bureaucrat::GradeTooLowException::what(void) const throw()
 {
 	return (BUREAU_ERROR_LOW_GRADE);
+}
+
+void	Bureaucrat::signForm(Form &form)
+{
+	if (form.getSignedStatus() == true)			// form ya firmado
+		return ;
+	try
+	{
+		form.beSigned(*this);
+
+	}
+	catch (std::exception &exceptValue)
+	{
+
+		
+	}
 }
 
 std::ostream	&operator<< (std::ostream &stream, const Bureaucrat &reference)
