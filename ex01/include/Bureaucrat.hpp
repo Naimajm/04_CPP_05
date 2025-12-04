@@ -6,7 +6,7 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 22:24:17 by juagomez          #+#    #+#             */
-/*   Updated: 2025/12/03 12:09:36 by juagomez         ###   ########.fr       */
+/*   Updated: 2025/12/03 17:02:05 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@
 # define	BUREAU_DISPLAY_MSG		", bureaucrat grade "
 # define 	BUREAU_MIN_GRADE		150
 # define 	BUREAU_MAX_GRADE		1
-# define 	BUREAU_ERROR_HIGH_GRADE	"Error: Grade is too high (maximum is 1)."
-# define 	BUREAU_ERROR_LOW_GRADE	"Error: Grade is too low (minimum is 150)."
+# define 	BUREAU_ERROR_HIGH_GRADE	"Error: Bureaucrat Grade is too high (maximum -> 1)."
+# define 	BUREAU_ERROR_LOW_GRADE	"Error: Bureaucrat Grade is too low (minimum -> 150)."
 
-class Bureaucrat
+class Bureaucrat 
 {
 	public:
 		Bureaucrat(void);											

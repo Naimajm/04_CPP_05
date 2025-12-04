@@ -6,7 +6,7 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 11:12:01 by juagomez          #+#    #+#             */
-/*   Updated: 2025/12/03 15:56:32 by juagomez         ###   ########.fr       */
+/*   Updated: 2025/12/03 17:46:28 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 //#include "./Bureaucrat.hpp"
 class Bureaucrat; 			// Forward declaration: "Prometo que esta clase existirá"
 
-# define	FORM_ID					"[Form] \t"
+# define	FORM_ID					"[Form] \t\t"
 
 # define	CONSTRUCTOR_MSG    		"Default Constructor: object created.\t"
 # define	COPY_CONSTRUCTOR_MSG	"Copy Constructor: object created.\t"
@@ -34,8 +34,9 @@ class Bureaucrat; 			// Forward declaration: "Prometo que esta clase existirá"
 # define 	FORM_MIN_GRADE			150
 # define 	FORM_MAX_GRADE			1
 
-# define 	FORM_ERROR_HIGH_GRADE	"Error: Grade is too high."
-# define 	FORM_ERROR_LOW_GRADE	"Error: Grade is too low."
+# define 	FORM_ERROR_HIGH_GRADE	"Error: Form Grade is too high."
+# define 	FORM_ERROR_LOW_GRADE	"Error: Form Grade is too low."
+# define 	FORM_ERROR_SIGNED		"Error: Form is already signed."
 
 class	Form
 {
@@ -70,7 +71,13 @@ class	Form
 			public:
 				// const throw() -> no modificará ningún atributo de la clase y que no lanzará ninguna excepción -> +seguridad
 				virtual const char* what(void) const throw();
-		};
+		};		
+		// EXCEPCION -> formulario ya ha sido firmado con anterioridad
+		class	FormAlreadySignedException : public std::exception
+        {
+            public:
+                virtual const char* what(void) const throw();
+        };
 	
 	private:
 		const std::string	_name;

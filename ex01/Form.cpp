@@ -6,7 +6,7 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 11:43:57 by juagomez          #+#    #+#             */
-/*   Updated: 2025/12/03 16:15:12 by juagomez         ###   ########.fr       */
+/*   Updated: 2025/12/03 17:10:00 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,24 +88,21 @@ int			Form::getExecuteGrade(void) const
 }
 
 // metodos propios-----------------------------------
+
+// Se encarga de la lógica de negocio pura 
+// 1 -> validar si burócrata tiene grado suficiente
+// 2 -> cambiar estado del formulario. Si no puede, lanza una excepción.
 void		Form::beSigned(Bureaucrat &bureaucrat)
 {
 	// validacion si form ya fue firmado
 	if (this->_isSigned == true)
-		return ;
+		throw (FormAlreadySignedException());
+
 	// LOGICA NEGOCIO
-	if (bureaucrat.getGrade() > this->_signGrade)
-	{
-		// display subect -> <bureaucrat> couldn’t sign <form> because <reason>.
-		std::cout 	<< bureaucrat.getName() << " couldn’t sign " << this->_name
-					<< " because " << FORM_ERROR_LOW_GRADE
-					<< std::endl;	
-		throw (GradeTooLowException());
-	}
-	this->_isSigned = true;		// firmar form
-	// display subject -> <bureaucrat> signed <form>
-	std::cout 	<< bureaucrat.getName() << " signed " << this->_name
-				<< std::endl;
+	if (bureaucrat.getGrade() > this->_signGrade)		
+		throw (GradeTooLowException());		// LANZA excepcion -> la gestiona funcion signForm() Bureaucrat
+
+	this->_isSigned = true;		// firmar form	
 }
 
 // excepciones ------------------------------------
@@ -119,12 +116,23 @@ const char* Form::GradeTooLowException::what(void) const throw()
 	return (FORM_ERROR_LOW_GRADE);
 }
 
+const char* Form::FormAlreadySignedException::what(void) const throw()
+{
+	return (FORM_ERROR_SIGNED);
+}
+
 // SOBRECARGA INSERCION -> IMPRESION DATOS INSTANCIA FORM
 std::ostream	&operator<< (std::ostream &stream, const Form &instance)
 {
-	stream	<< FORM_ID << "Name: "	<< instance.getName()
-			<< ", is signed: " 		<< (instance.getSignedStatus() ? "true" : "false")
-			<< ", Sign Grade: "		<< instance.getSignGrade()
+	stream	<< FORM_ID << "Name: "	<< instance.getName();
+
+	stream	<< ", Signed Status: ";
+	if(instance.getSignedStatus())
+		stream << "True";
+	else
+		stream << "False";
+
+	stream	<< ", Sign Grade: "		<< instance.getSignGrade()
 			<< ", Exec Grade: "		<< instance.getExecuteGrade() 
 			<< std::endl;
 	return (stream);
