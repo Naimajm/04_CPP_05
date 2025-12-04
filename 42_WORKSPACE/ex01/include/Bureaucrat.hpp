@@ -6,7 +6,7 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 22:24:17 by juagomez          #+#    #+#             */
-/*   Updated: 2025/12/04 10:30:01 by juagomez         ###   ########.fr       */
+/*   Updated: 2025/12/03 17:02:05 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,14 @@ class Bureaucrat
 				virtual const char* what(void) const throw();
 		};
 
+		// metodo propio firma formulario si tiene 'grade' suficiente. llama a beSigned() de Form
 		void	signForm(Form &form);		
 
 	private:
 		const	std::string	_name; 
 		int					_grade;	
+		
+		void	displaySignForm(bool status);	// aux para imprimir estado firma Form	
 };
 
 std::ostream	&operator<< (std::ostream &stream, const Bureaucrat &reference);

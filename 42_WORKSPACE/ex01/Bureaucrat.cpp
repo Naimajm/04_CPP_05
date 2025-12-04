@@ -6,7 +6,7 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 22:24:27 by juagomez          #+#    #+#             */
-/*   Updated: 2025/12/04 10:37:12 by juagomez         ###   ########.fr       */
+/*   Updated: 2025/12/03 17:12:04 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,16 +96,21 @@ const char* Bureaucrat::GradeTooLowException::what(void) const throw()
 	return (BUREAU_ERROR_LOW_GRADE);
 }
 
+// FIRMA FORM -> Se encarga de la interacción y presentación 
+// Intenta firmar el formulario y gestiona el resultado (éxito o fracaso) mostrando los mensajes apropiados.
 void	Bureaucrat::signForm(Form &form)
 {
 	try
 	{
 		form.beSigned(*this);
+
+		// display subject -> <bureaucrat> signed <form>
 		std::cout	<< this->_name << " signed " << form.getName()
 					<< std::endl;
 	}
 	catch (std::exception &exceptValue)
 	{
+		// display subect -> <bureaucrat> couldn’t sign <form> because <reason>.
 		std::cout 	<< this->_name << " couldn’t sign " << form.getName()
 					<< " because " << exceptValue.what()
 					<< std::endl;			

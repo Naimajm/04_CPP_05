@@ -6,7 +6,7 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 11:12:01 by juagomez          #+#    #+#             */
-/*   Updated: 2025/12/04 10:35:35 by juagomez         ###   ########.fr       */
+/*   Updated: 2025/12/03 17:46:28 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 #include <string>
 #include <iostream>
 
-class Bureaucrat;
+//#include "./Bureaucrat.hpp"
+class Bureaucrat; 			// Forward declaration: "Prometo que esta clase existirá"
 
 # define	FORM_ID					"[Form] \t\t"
 
@@ -40,20 +41,26 @@ class Bureaucrat;
 class	Form
 {
 	public:
-		Form(void);									
-		Form(const Form &instance);					
-		Form	&operator= (const Form &instance);	
+		// Forma Canonica
+		Form(void);									// constructor por defecto
+		Form(const Form &instance);					// constructor copia
+		Form	&operator= (const Form &instance);	// sobrecarga asignacion
 		~Form(void);	
+		// Forma Canonica
 
+		// Constructor parametrico
 		Form(const std::string &name, int signGrade, int executeGrade);
 
+		// getters + setters
 		std::string	getName(void) const;
 		bool		getSignedStatus(void) const;
 		int			getSignGrade(void) const;
 		int			getExecuteGrade(void) const;
 
-		void		beSigned(Bureaucrat &bureaucrat);			
+		// metodos propios
+		void		beSigned(Bureaucrat &bureaucrat);			// firmar form -> cambiar bool
 
+		// excepciones	
 		class	GradeTooHighException : public std::exception
 		{
 			public:
@@ -62,8 +69,10 @@ class	Form
 		class	GradeTooLowException : public std::exception
 		{
 			public:
+				// const throw() -> no modificará ningún atributo de la clase y que no lanzará ninguna excepción -> +seguridad
 				virtual const char* what(void) const throw();
 		};		
+		// EXCEPCION -> formulario ya ha sido firmado con anterioridad
 		class	FormAlreadySignedException : public std::exception
         {
             public:
@@ -72,9 +81,9 @@ class	Form
 	
 	private:
 		const std::string	_name;
-		bool				_isSigned; 	 	
-		const int			_signGrade;		
-		const int			_executeGrade;	
+		bool				_isSigned; 	 	// booleano que indica si está firmado
+		const int			_signGrade;		// nivel mínimo de un burócrata para firmarlo
+		const int			_executeGrade;	// nivel mínimo de un burócrata para firmarlo
 };
 
 std::ostream	&operator<< (std::ostream &stream, const Form &instance);

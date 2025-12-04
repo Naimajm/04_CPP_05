@@ -6,7 +6,7 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 22:18:10 by juagomez          #+#    #+#             */
-/*   Updated: 2025/12/04 10:39:26 by juagomez         ###   ########.fr       */
+/*   Updated: 2025/12/04 10:11:30 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	main(void)
         std::cout << report;        
         boss.signForm(report);
         std::cout << report;        
-        assistant.signForm(report);
+        assistant.signForm(report);  // Intento de firmar formulario ya firmado
         std::cout << std::endl;
     }
     {
@@ -102,9 +102,9 @@ int	main(void)
 		std::cout << std::endl;
         
         std::cout << permit;        
-        bob.signForm(permit);     
-        alice.signForm(permit);   
-        charlie.signForm(permit);   
+        bob.signForm(permit);     // Falla: grado insuficiente
+        alice.signForm(permit);   // Éxito: grado suficiente
+        charlie.signForm(permit); // Falla: ya firmado        
         std::cout << permit;
         std::cout << std::endl;
     }    
