@@ -6,14 +6,14 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 11:00:09 by juagomez          #+#    #+#             */
-/*   Updated: 2025/12/04 14:11:36 by juagomez         ###   ########.fr       */
+/*   Updated: 2025/12/16 17:39:45 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SHRUBBERYCREATIONFORM_HPP
 #define SHRUBBERYCREATIONFORM_HPP
 
-#include "./AForm.hpp"			// CLASE BASE
+#include "./AForm.hpp"					// CLASE BASE
 
 # define	SHRUBB_ID					"[Shrubbery] \t"
 
@@ -24,7 +24,7 @@ class ShrubberyCreationForm: public AForm
 		ShrubberyCreationForm(void);
 		ShrubberyCreationForm(const ShrubberyCreationForm &instance);
 		ShrubberyCreationForm	&operator= (const ShrubberyCreationForm &instance);
-		~ShrubberyCreationForm(void);
+		virtual	~ShrubberyCreationForm(void);
 		// Forma Canonica
 
 		// Constructor parametrico
@@ -35,7 +35,6 @@ class ShrubberyCreationForm: public AForm
 		virtual void	execute(const Bureaucrat &executor) const; 
 
 		// excepciones
-
 };
 
 #endif

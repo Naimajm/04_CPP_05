@@ -6,7 +6,7 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 12:20:14 by juagomez          #+#    #+#             */
-/*   Updated: 2025/12/04 14:29:01 by juagomez         ###   ########.fr       */
+/*   Updated: 2025/12/16 17:09:36 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ AForm::~AForm(void)
 	std::cout << AFORM_ID << DESTRUCTOR_MSG << this->_name << std::endl;
 }
 
-AForm::AForm(const std::string &name, const int signGrade, const int executeGrade, const std::string &target)
+AForm::AForm(const std::string &name, const int signGrade, 
+				const int executeGrade, const std::string &target)
 :	_name(name), 
 	_isSigned(false), 
 	_signGrade(signGrade), 

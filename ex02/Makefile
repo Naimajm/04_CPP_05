@@ -13,7 +13,7 @@ INCLUDE			:= -I$(INCLUDE_DIR)
 
 SRC_FILES 		:= 	main.cpp \
 					Bureaucrat.cpp AForm.cpp \
-					ShrubberyCreationForm.cpp \
+					ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp\
 
 OBJ_FILES 		:= $(SRC_FILES:%.cpp=%.o)
 
