@@ -6,8 +6,7 @@ DARK_GREEN     	= \033[38;2;75;179;82m
 
 NAME 			:= bureaucrat
 CC 				:= c++
-CFLAGS 			:= -Wall -Wextra -Werror -std=c++98
-# -Wshadow
+CFLAGS 			:= -Wall -Wextra -Werror -std=c++98 -Wshadow
 
 INCLUDE_DIR 	:= ./include
 INCLUDE			:= -I$(INCLUDE_DIR)
