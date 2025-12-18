@@ -6,7 +6,7 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 17:18:42 by juagomez          #+#    #+#             */
-/*   Updated: 2025/12/16 17:35:41 by juagomez         ###   ########.fr       */
+/*   Updated: 2025/12/17 13:25:02 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,14 @@ void	RobotomyRequestForm::execute(const Bureaucrat &executor) const
 	{
 		// ACCION ESPECIFICA SEGUN TIPO FORM
 		// Hace ruidos de perforación y luego informa que <objetivo> ha sido robotizado con éxito el 50 % de las veces. De lo contrario, informa que la robotización falló.
-		std::cout  << ROBOTOMY_ID << "ACCION RobotomyRequestForm" << std::endl;
+		//std::cout  << ROBOTOMY_ID << "ACCION RobotomyRequestForm" << std::endl;
+		int	randomNumber;
+		
+		randomNumber = std::rand();
+		std::cout << ROBOTOMY_DRILLING_NOISE << std::endl;		
+		if (randomNumber % 2 == 0)
+			std::cout << this->getTarget() << ROBOTOMY_ACTION_OK << std::endl;
+		else
+			std::cout << ROBOTOMY_ACTION_FAIL << this->getTarget() << std::endl;
 	}	
 }

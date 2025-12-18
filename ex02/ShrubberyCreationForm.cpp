@@ -6,7 +6,7 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 13:02:51 by juagomez          #+#    #+#             */
-/*   Updated: 2025/12/16 17:15:02 by juagomez         ###   ########.fr       */
+/*   Updated: 2025/12/18 11:41:01 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(void)
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &instance)
-	: AForm(instance)							// llama a constructor clase abstracta
+	:	AForm(instance)							// llama a constructor clase abstracta
 {
 	std::cout << SHRUBB_ID << COPY_CONSTRUCTOR_MSG << this->getName() << std::endl;
 }
@@ -54,6 +54,21 @@ void	ShrubberyCreationForm::execute(const Bureaucrat &executor) const
 	{
 		// ACCION ESPECIFICA SEGUN TIPO FORM
 		// Crea un archivo <target>_shrubbery en el directorio de trabajo y escribe árboles ASCII dentro de él.
-		std::cout  << SHRUBB_ID << "ACCION ShrubberyCreationForm" << std::endl;
+		std::string	filename;
+
+		filename = this->getTarget() + "_shrubbery";
+        std::ofstream file(filename.c_str());
+        
+        if (file.is_open() == false)
+        {
+            std::cerr << SHRUBB_ID << SHRUBB_FILE_ERROR << filename << std::endl;
+            return ;
+        }        
+        // Escribir árbol ASCII personalizado
+        file << ASCII_TREE	<< std::endl;
+		file << filename 	<< std::endl;
+        
+        file.close();
+        std::cout << SHRUBB_ID << SHRUBB_FILE_CREATE << filename << std::endl;
 	}	
 }

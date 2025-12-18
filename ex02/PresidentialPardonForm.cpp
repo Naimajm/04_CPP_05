@@ -6,7 +6,7 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 17:42:04 by juagomez          #+#    #+#             */
-/*   Updated: 2025/12/16 17:46:01 by juagomez         ###   ########.fr       */
+/*   Updated: 2025/12/17 13:08:49 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	PresidentialPardonForm::execute(const Bureaucrat &executor) const
 	{
 		// ACCION ESPECIFICA SEGUN TIPO FORM
 		// Informa que <target> ha sido indultado por Zaphod Beeblebrox.
-		std::cout  << PRESIDENTAL_ID << "ACCION RobotomyRequestForm" << std::endl;
+		//std::cout  << PRESIDENTAL_ID << "ACCION RobotomyRequestForm" << std::endl;
+		std::cout << this->getTarget() << PRESIDENTAL_ACTION << std::endl;
 	}	
 }

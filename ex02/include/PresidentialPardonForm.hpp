@@ -6,7 +6,7 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 17:36:17 by juagomez          #+#    #+#             */
-/*   Updated: 2025/12/16 17:44:36 by juagomez         ###   ########.fr       */
+/*   Updated: 2025/12/17 12:38:17 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "./AForm.hpp"
 
 # define PRESIDENTAL_ID			"[Presidental] \t"
+# define PRESIDENTAL_ACTION		" has been pardoned by Zafod Beeblebrox"
 
 class PresidentialPardonForm:	public AForm
 {

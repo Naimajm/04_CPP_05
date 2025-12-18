@@ -6,7 +6,7 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 12:20:14 by juagomez          #+#    #+#             */
-/*   Updated: 2025/12/16 17:09:36 by juagomez         ###   ########.fr       */
+/*   Updated: 2025/12/17 12:54:08 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ AForm	&AForm::operator= (const AForm &instance)
 {
 	if (this != &instance)
 	{
-		this->_isSigned = instance._isSigned;
-		this->_target	= instance._target;
+		this->_isSigned = instance.getSignedStatus();
+		this->_target	= instance.getTarget();
 	}	
 	std::cout << AFORM_ID << ASSIGNMENT_MSG << this->_name << std::endl;
 	return (*this);
@@ -154,6 +154,7 @@ std::ostream	&operator<< (std::ostream &stream, const AForm &instance)
 
 	stream	<< ", Sign Grade: "		<< instance.getSignGrade()
 			<< ", Exec Grade: "		<< instance.getExecuteGrade() 
+			<< ", Target: "			<< instance.getTarget() 
 			<< std::endl;
 	return (stream);
 }

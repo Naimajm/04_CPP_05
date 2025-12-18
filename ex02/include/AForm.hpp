@@ -6,7 +6,7 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 10:46:53 by juagomez          #+#    #+#             */
-/*   Updated: 2025/12/16 17:03:05 by juagomez         ###   ########.fr       */
+/*   Updated: 2025/12/17 12:53:46 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ class AForm
 		const int			_signGrade;		
 		const int			_executeGrade;	
 
-		std::string			_target;
+		std::string			_target;			// Target of the form
 };
 
 std::ostream	&operator<< (std::ostream &stream, const AForm &instance);

@@ -6,20 +6,22 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 22:24:27 by juagomez          #+#    #+#             */
-/*   Updated: 2025/12/04 13:55:14 by juagomez         ###   ########.fr       */
+/*   Updated: 2025/12/17 12:59:58 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include  "./include/Bureaucrat.hpp"
 
 Bureaucrat::Bureaucrat(void)
-	: _name(BUREAU_DEFAULT_NAME), _grade(BUREAU_DEFAULT_GRADE)
+	: 	_name(BUREAU_DEFAULT_NAME),
+		_grade(BUREAU_DEFAULT_GRADE)
 {	
 	std::cout << BUREAU_ID << CONSTRUCTOR_MSG << this->_name << std::endl;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat &reference)
-	:	_name(reference._name), _grade(reference._grade)
+	:	_name(reference._name),
+		_grade(reference._grade)
 {
 	std::cout << BUREAU_ID << COPY_CONSTRUCTOR_MSG << this->_name << std::endl;
 }
@@ -50,7 +52,6 @@ Bureaucrat::Bureaucrat(const std::string &name, int grade)
 
 	std::cout << BUREAU_ID << NAME_CONSTRUCTOR_MSG << this->_name << std::endl;	
 }
-
 
 std::string		Bureaucrat::getName(void) const
 {
