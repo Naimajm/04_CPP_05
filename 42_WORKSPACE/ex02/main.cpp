@@ -6,7 +6,7 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 22:18:10 by juagomez          #+#    #+#             */
-/*   Updated: 2025/12/18 16:33:30 by juagomez         ###   ########.fr       */
+/*   Updated: 2025/12/18 14:32:44 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,12 @@
 #include "./include/RobotomyRequestForm.hpp"
 #include "./include/PresidentialPardonForm.hpp"
 
+#include <ctime> 
+
 int	main(void)
 {
-	std::srand(std::time(0));
+	std::srand(std::time(0));  // Usa el tiempo actual como semilla
+	// RobotomyRequestForm tendrá diferentes números aleatorios por ejecucion
 
 	{    
 		std::cout << "\n===== BUREAUCRAT CONSTRUCTION - INVALID GRADE  =====\n" << std::endl;   
@@ -35,6 +38,7 @@ int	main(void)
 		try
 		{
 			ShrubberyCreationForm shrub("");
+			std::cout << std::endl;
 		}
 		catch (std::exception &exceptValue)
 		{
@@ -44,9 +48,9 @@ int	main(void)
     {	
         std::cout << "\n===== SHRUBBERY - EXCEPTION OPEN FILE =====\n" << std::endl;
         
-        std::string 			veryLong(500, 'x');
-		ShrubberyCreationForm 	shrub(veryLong);
-		Bureaucrat 				boss("Boss", 1);
+        std::string veryLong(500, 'x');  // string con 'n' repeticiones del carácter 'x' -> Path demasiado largo
+		ShrubberyCreationForm shrub(veryLong);
+		Bureaucrat boss("Boss", 1);
 		std::cout << std::endl;
 		
 		std::cout << "Target length: " << veryLong.length() << std::endl;		
@@ -188,8 +192,8 @@ int	main(void)
 	{
         std::cout << "\n===== PRESIDENTIAL - NOT SIGNED =====\n" << std::endl;
         
-        Bureaucrat				dictator("Dictator", 1);
-        PresidentialPardonForm	pardon("Slartibartfast");
+        Bureaucrat	dictator("Dictator", 1);
+        PresidentialPardonForm pardon("Slartibartfast");
         std::cout << std::endl;
         
         std::cout << pardon;        

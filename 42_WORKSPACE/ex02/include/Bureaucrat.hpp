@@ -6,7 +6,7 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 22:24:17 by juagomez          #+#    #+#             */
-/*   Updated: 2025/12/18 16:27:10 by juagomez         ###   ########.fr       */
+/*   Updated: 2025/12/04 13:51:33 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ class Bureaucrat
 		};
 
 		void	signForm(AForm &form);	
-		void	executeForm(const AForm &form) const;
+		void	executeForm(const AForm &form) const;		// nuevo -> ejecuta accion de cada tipo form
 
 	private:
 		const	std::string	_name; 

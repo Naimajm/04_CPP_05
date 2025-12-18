@@ -6,7 +6,7 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 22:24:27 by juagomez          #+#    #+#             */
-/*   Updated: 2025/12/18 16:31:56 by juagomez         ###   ########.fr       */
+/*   Updated: 2025/12/18 13:58:27 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ void	Bureaucrat::executeForm(const AForm &form) const
 	try
 	{
 		form.execute(*this);
+		// msg subject -> <bureaucrat> executed <form>
 		std::cout	<< this->_name << " executed " << form.getName()
 					<< std::endl;
 	}

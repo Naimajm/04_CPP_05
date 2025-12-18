@@ -6,7 +6,7 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 10:46:53 by juagomez          #+#    #+#             */
-/*   Updated: 2025/12/18 16:26:31 by juagomez         ###   ########.fr       */
+/*   Updated: 2025/12/18 13:25:30 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,16 @@ class Bureaucrat;
 
 # define 	AFORM_ERROR_TARGET			"Error: Invalid target name."
 
+/// CLASE ABSTRACTA FORMULARIO
 class AForm
 {
 	public:
+		// forma canonica ortodoxa
 		AForm(void);									
 		AForm(const AForm &instance);					
 		AForm	&operator= (const AForm &instance);	
 		virtual ~AForm(void);	
+		// forma canonica ortodoxa
 
 		AForm(const std::string &name, int signGrade, int executeGrade, const std::string &target);
 
@@ -61,8 +64,10 @@ class AForm
 
 		void		beSigned(Bureaucrat &bureaucrat);
 
+		// virtual PURO-> poliformismo de accion en cada tipo 'form'
 		virtual void	execute(const Bureaucrat &executor) const = 0; 
 
+		// EXCEPCIONES 'LOGICA NEGOCIO'
 		class	GradeTooHighException 	: public std::exception
 		{
 			public:
@@ -84,6 +89,7 @@ class AForm
                 virtual const char* what(void) const throw();
         };
 
+		// EXCEPCION VALIDACION TARGET
 		class	InvalidTargetException 	: public std::exception
         {
             public:
@@ -92,8 +98,8 @@ class AForm
 		
 	protected:
 		
-		bool	validateExecRequirements(const Bureaucrat &executor) const;
-		bool	validateTarget(const std::string &target);
+		bool	validateExecRequirements(const Bureaucrat &executor) const;	// funcion auxiliar validacion en funcion execute()		
+		bool	validateTarget(const std::string &target);	// validar string target
 	
 	private:
 		const std::string	_name;
@@ -101,7 +107,7 @@ class AForm
 		const int			_signGrade;		
 		const int			_executeGrade;	
 
-		std::string			_target;
+		std::string			_target;			// Target of the form
 };
 
 std::ostream	&operator<< (std::ostream &stream, const AForm &instance);
