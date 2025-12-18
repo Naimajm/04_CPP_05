@@ -6,7 +6,7 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 22:18:10 by juagomez          #+#    #+#             */
-/*   Updated: 2025/12/18 11:27:37 by juagomez         ###   ########.fr       */
+/*   Updated: 2025/12/18 12:22:01 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,27 @@ int	main(void)
 	std::srand(std::time(0));  // Usa el tiempo actual como semilla
 	// RobotomyRequestForm tendrá diferentes números aleatorios por ejecucion
 
-    {	
+	{	
+		std::cout << "\n===== SHRUBBERY - INVALID TARGET (EMPTY) =====\n" << std::endl;
+		
+		try
+		{
+			ShrubberyCreationForm shrub("");  // Target vacío
+			Bureaucrat boss("Boss", 1);
+			std::cout << std::endl;
+			
+			boss.signForm(shrub);
+			boss.executeForm(shrub);  // Debería rechazar
+			std::cout << std::endl;
+		}
+		catch (std::exception &e)
+		{
+			std::cerr << "Exception: " << e.what() << std::endl;
+		}
+		std::cout << std::endl;
+	}
+
+    /* {	
         std::cout << "\n===== SHRUBBERY - SUCCESSFUL EXECUTION =====\n" << std::endl;
         
         Bureaucrat				director("Director", 137);
@@ -188,7 +208,7 @@ int	main(void)
         master.executeForm(robot);
         master.executeForm(pardon);
         std::cout << std::endl;
-    }
+    } */
     
     return (0);
 }
