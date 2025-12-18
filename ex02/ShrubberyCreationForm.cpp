@@ -6,7 +6,7 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 13:02:51 by juagomez          #+#    #+#             */
-/*   Updated: 2025/12/18 11:41:01 by juagomez         ###   ########.fr       */
+/*   Updated: 2025/12/18 13:14:16 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(const std::string &target)
 /// OVERRIDE METODO VIRTUAL PURO
 void	ShrubberyCreationForm::execute(const Bureaucrat &executor) const
 {
-	if (this->validate_exec_requirements(executor))
+	if (this->validateExecRequirements(executor))
 	{
 		// ACCION ESPECIFICA SEGUN TIPO FORM
 		// Crea un archivo <target>_shrubbery en el directorio de trabajo y escribe árboles ASCII dentro de él.
@@ -60,10 +60,8 @@ void	ShrubberyCreationForm::execute(const Bureaucrat &executor) const
         std::ofstream file(filename.c_str());
         
         if (file.is_open() == false)
-        {
-            std::cerr << SHRUBB_ID << SHRUBB_FILE_ERROR << filename << std::endl;
-            return ;
-        }        
+            throw	FileCreationException();	// lanza excepcion creacion archivo
+
         // Escribir árbol ASCII personalizado
         file << ASCII_TREE	<< std::endl;
 		file << filename 	<< std::endl;
@@ -71,4 +69,10 @@ void	ShrubberyCreationForm::execute(const Bureaucrat &executor) const
         file.close();
         std::cout << SHRUBB_ID << SHRUBB_FILE_CREATE << filename << std::endl;
 	}	
+}
+
+/// EXCEPCION PROPIA DE CLASE -> ERROR AL CREAR ARCHIVO
+const char* ShrubberyCreationForm::FileCreationException::what(void) const throw()
+{
+	return (SHRUBB_FILE_ERROR);
 }

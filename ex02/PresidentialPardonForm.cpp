@@ -6,7 +6,7 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 17:42:04 by juagomez          #+#    #+#             */
-/*   Updated: 2025/12/17 13:08:49 by juagomez         ###   ########.fr       */
+/*   Updated: 2025/12/18 13:08:54 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ PresidentialPardonForm::PresidentialPardonForm(const std::string &target)
 /// OVERRIDE METODO VIRTUAL PURO
 void	PresidentialPardonForm::execute(const Bureaucrat &executor) const
 {
-	if (this->validate_exec_requirements(executor))
+	if (this->validateExecRequirements(executor))
 	{
 		// ACCION ESPECIFICA SEGUN TIPO FORM
 		// Informa que <target> ha sido indultado por Zaphod Beeblebrox.

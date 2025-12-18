@@ -6,7 +6,7 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 10:46:53 by juagomez          #+#    #+#             */
-/*   Updated: 2025/12/17 12:53:46 by juagomez         ###   ########.fr       */
+/*   Updated: 2025/12/18 13:25:30 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ class Bureaucrat;
 # define 	AFORM_ERROR_SIGNED			"Error: Form is already signed."
 # define 	AFORM_ERROR_NOT_SIGNED		"Error: Form is not signed."
 
+# define 	AFORM_ERROR_TARGET			"Error: Invalid target name."
+
 /// CLASE ABSTRACTA FORMULARIO
 class AForm
 {
@@ -65,6 +67,7 @@ class AForm
 		// virtual PURO-> poliformismo de accion en cada tipo 'form'
 		virtual void	execute(const Bureaucrat &executor) const = 0; 
 
+		// EXCEPCIONES 'LOGICA NEGOCIO'
 		class	GradeTooHighException 	: public std::exception
 		{
 			public:
@@ -86,9 +89,17 @@ class AForm
                 virtual const char* what(void) const throw();
         };
 
+		// EXCEPCION VALIDACION TARGET
+		class	InvalidTargetException 	: public std::exception
+        {
+            public:
+                virtual const char* what(void) const throw();
+        };
+		
 	protected:
 		
-		bool	validate_exec_requirements(const Bureaucrat &executor) const;	// funcion auxiliar validacion en funcion execute()			
+		bool	validateExecRequirements(const Bureaucrat &executor) const;	// funcion auxiliar validacion en funcion execute()		
+		bool	validateTarget(const std::string &target);	// validar string target
 	
 	private:
 		const std::string	_name;

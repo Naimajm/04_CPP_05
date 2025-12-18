@@ -6,7 +6,7 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 11:00:09 by juagomez          #+#    #+#             */
-/*   Updated: 2025/12/18 11:50:24 by juagomez         ###   ########.fr       */
+/*   Updated: 2025/12/18 13:14:09 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,12 @@ class ShrubberyCreationForm: public AForm
 		// virtual -> poliformismo de accion en cada tipo 'form'
 		virtual void	execute(const Bureaucrat &executor) const; 
 
-		// excepciones
+		// excepciones propias ¡¡ ERROR AL GENERAR ARCHIVO
+		class	FileCreationException	: public std::exception
+        {
+            public:
+                virtual const char* what(void) const throw();
+        };
 };
 
 #endif

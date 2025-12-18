@@ -6,7 +6,7 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 12:20:14 by juagomez          #+#    #+#             */
-/*   Updated: 2025/12/17 12:54:08 by juagomez         ###   ########.fr       */
+/*   Updated: 2025/12/18 13:47:59 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,10 @@ AForm::AForm(const std::string &name, const int signGrade,
 	_executeGrade(executeGrade),
 	_target(target)
 {
+	// VALIDAR TARGET (VACIO O CARACTERES NO PERMITIDOS)
+	if (this->validateTarget(target) == false)
+		throw (InvalidTargetException());
+
 	if (signGrade < AFORM_MAX_GRADE || executeGrade < AFORM_MAX_GRADE)
 		throw (GradeTooHighException());
 	if (signGrade > AFORM_MIN_GRADE || executeGrade > AFORM_MIN_GRADE)
@@ -128,8 +132,13 @@ const char* AForm::NotSignedException::what(void) const throw()
 	return (AFORM_ERROR_NOT_SIGNED);
 }
 
+const char* AForm::InvalidTargetException::what(void) const throw()
+{
+	return (AFORM_ERROR_TARGET);
+}
+
 // funcion auxiliar validacion en funcion execute()	
-bool		AForm::validate_exec_requirements(const Bureaucrat &executor) const
+bool		AForm::validateExecRequirements(const Bureaucrat &executor) const
 {
 	// VERIFICAR QUE FORM ESTA FIRMADO
 	if (this->_isSigned == false)
@@ -139,6 +148,26 @@ bool		AForm::validate_exec_requirements(const Bureaucrat &executor) const
 	if (this->_executeGrade < executor.getGrade())
 		throw (AForm::GradeTooLowException());
 
+	return (true);
+}
+
+// METODO AUXILIAR PARA VALIDAR TARGET (VACIOS, no permitidos)
+bool	AForm::validateTarget(const std::string &target)
+{
+	// VERIFICAR TARGET VACIO
+	if (target.empty())
+		return (false);
+
+	// VERIFICAR CARACTERES NO PERMITIDOS
+	// Rechazar path traversal -> seguridad
+	if (target.find("..") != std::string::npos)		// caracter encontrado
+		return (false);
+	// Rechazar rutas absolutas
+	if (target.find("/") != std::string::npos)		// caracter encontrado
+		return (false);
+	// Rechazar backslash literal (rutas Windows o caracter escape)
+	if (target.find("\\") != std::string::npos) 
+		return (false);
 	return (true);
 }
 

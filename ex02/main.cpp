@@ -6,7 +6,7 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 22:18:10 by juagomez          #+#    #+#             */
-/*   Updated: 2025/12/18 12:22:01 by juagomez         ###   ########.fr       */
+/*   Updated: 2025/12/18 14:32:44 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,27 +22,44 @@ int	main(void)
 	std::srand(std::time(0));  // Usa el tiempo actual como semilla
 	// RobotomyRequestForm tendrá diferentes números aleatorios por ejecucion
 
-	{	
-		std::cout << "\n===== SHRUBBERY - INVALID TARGET (EMPTY) =====\n" << std::endl;
-		
+	{    
+		std::cout << "\n===== BUREAUCRAT CONSTRUCTION - INVALID GRADE  =====\n" << std::endl;   
 		try
 		{
-			ShrubberyCreationForm shrub("");  // Target vacío
-			Bureaucrat boss("Boss", 1);
-			std::cout << std::endl;
-			
-			boss.signForm(shrub);
-			boss.executeForm(shrub);  // Debería rechazar
-			std::cout << std::endl;
+			Bureaucrat invalid("Invalid", 0);
 		}
-		catch (std::exception &e)
+		catch (std::exception &exceptValue)
 		{
-			std::cerr << "Exception: " << e.what() << std::endl;
+			std::cerr << "Exception: " << exceptValue.what() << std::endl;
 		}
-		std::cout << std::endl;
 	}
-
-    /* {	
+	{    
+		std::cout << "\n===== SHRUBBERY CONSTRUCTION - INVALID TARGET (EMPTY) =====\n" << std::endl;    
+		try
+		{
+			ShrubberyCreationForm shrub("");
+			std::cout << std::endl;
+		}
+		catch (std::exception &exceptValue)
+		{
+			std::cerr << "Exception: " << exceptValue.what() << std::endl;
+		}
+	}
+    {	
+        std::cout << "\n===== SHRUBBERY - EXCEPTION OPEN FILE =====\n" << std::endl;
+        
+        std::string veryLong(500, 'x');  // string con 'n' repeticiones del carácter 'x' -> Path demasiado largo
+		ShrubberyCreationForm shrub(veryLong);
+		Bureaucrat boss("Boss", 1);
+		std::cout << std::endl;
+		
+		std::cout << "Target length: " << veryLong.length() << std::endl;		
+		
+		boss.signForm(shrub);
+		boss.executeForm(shrub);                
+        std::cout << std::endl;
+    }
+    {	
         std::cout << "\n===== SHRUBBERY - SUCCESSFUL EXECUTION =====\n" << std::endl;
         
         Bureaucrat				director("Director", 137);
@@ -208,7 +225,7 @@ int	main(void)
         master.executeForm(robot);
         master.executeForm(pardon);
         std::cout << std::endl;
-    } */
+    }
     
     return (0);
 }

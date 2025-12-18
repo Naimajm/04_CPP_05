@@ -6,7 +6,7 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 22:24:27 by juagomez          #+#    #+#             */
-/*   Updated: 2025/12/17 12:59:58 by juagomez         ###   ########.fr       */
+/*   Updated: 2025/12/18 13:58:27 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ void	Bureaucrat::decrementGrade(void)
 		throw (GradeTooLowException());
 	this->_grade++;	
 }
-
 
 const char* Bureaucrat::GradeTooHighException::what(void) const throw()
 {

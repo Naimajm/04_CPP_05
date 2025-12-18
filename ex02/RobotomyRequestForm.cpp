@@ -6,7 +6,7 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 17:18:42 by juagomez          #+#    #+#             */
-/*   Updated: 2025/12/17 13:25:02 by juagomez         ###   ########.fr       */
+/*   Updated: 2025/12/18 13:08:54 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ RobotomyRequestForm::RobotomyRequestForm(const std::string &target)
 /// OVERRIDE METODO VIRTUAL PURO
 void	RobotomyRequestForm::execute(const Bureaucrat &executor) const
 {
-	if (this->validate_exec_requirements(executor))
+	if (this->validateExecRequirements(executor))
 	{
 		// ACCION ESPECIFICA SEGUN TIPO FORM
 		// Hace ruidos de perforación y luego informa que <objetivo> ha sido robotizado con éxito el 50 % de las veces. De lo contrario, informa que la robotización falló.
