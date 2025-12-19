@@ -1,0 +1,109 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/04 10:46:53 by juagomez          #+#    #+#             */
+/*   Updated: 2025/12/18 16:26:31 by juagomez         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef AFORM_HPP
+#define AFORM_HPP
+
+#include <string>
+#include <iostream>
+
+class Bureaucrat;
+
+# define	AFORM_ID					"[AForm] \t"
+
+# define	CONSTRUCTOR_MSG    			"Default Constructor: object created.\t"
+# define	COPY_CONSTRUCTOR_MSG		"Copy Constructor: object created.\t"
+# define	ASSIGNMENT_MSG				"Assignment operator: obj created.\t"
+# define	DESTRUCTOR_MSG	    		"Destructor: object destroyed.\t"
+# define	NAME_CONSTRUCTOR_MSG		"Parametric Constructor: object created.\t"
+
+# define	AFORM_DEFAULT_NAME			"default form"
+# define	AFORM_DEFAULT_SIGN_GRADE	150
+# define	AFORM_DEFAULT_EXEC_GRADE	150
+# define	AFORM_DEFAULT_TARGET		"default target"
+
+# define 	AFORM_MIN_GRADE				150
+# define 	AFORM_MAX_GRADE				1
+
+# define 	AFORM_ERROR_HIGH_GRADE		"Error: Form Grade is too high."
+# define 	AFORM_ERROR_LOW_GRADE		"Error: Form Grade is too low."
+# define 	AFORM_ERROR_SIGNED			"Error: Form is already signed."
+# define 	AFORM_ERROR_NOT_SIGNED		"Error: Form is not signed."
+
+# define 	AFORM_ERROR_TARGET			"Error: Invalid target name."
+
+class AForm
+{
+	public:
+		AForm(void);									
+		AForm(const AForm &instance);					
+		AForm	&operator= (const AForm &instance);	
+		virtual ~AForm(void);	
+
+		AForm(const std::string &name, int signGrade, int executeGrade, const std::string &target);
+
+		std::string	getName(void) const;
+		bool		getSignedStatus(void) const;
+		int			getSignGrade(void) const;
+		int			getExecuteGrade(void) const;
+
+		std::string	getTarget(void) const;
+		void		setTarget(std::string &target);
+
+		void		beSigned(Bureaucrat &bureaucrat);
+
+		virtual void	execute(const Bureaucrat &executor) const = 0; 
+
+		class	GradeTooHighException 	: public std::exception
+		{
+			public:
+				virtual const char* what(void) const throw();
+		};	
+		class	GradeTooLowException 	: public std::exception
+		{
+			public:
+				virtual const char* what(void) const throw();
+		};		
+		class	AlreadySignedException 	: public std::exception
+        {
+            public:
+                virtual const char* what(void) const throw();
+        };
+		class	NotSignedException 		: public std::exception
+        {
+            public:
+                virtual const char* what(void) const throw();
+        };
+
+		class	InvalidTargetException 	: public std::exception
+        {
+            public:
+                virtual const char* what(void) const throw();
+        };
+		
+	protected:
+		
+		bool	validateExecRequirements(const Bureaucrat &executor) const;
+		bool	validateTarget(const std::string &target);
+	
+	private:
+		const std::string	_name;
+		bool				_isSigned; 	 	
+		const int			_signGrade;		
+		const int			_executeGrade;	
+
+		std::string			_target;
+};
+
+std::ostream	&operator<< (std::ostream &stream, const AForm &instance);
+
+#endif
