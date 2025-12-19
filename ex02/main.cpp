@@ -6,7 +6,7 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 22:18:10 by juagomez          #+#    #+#             */
-/*   Updated: 2025/12/18 16:33:30 by juagomez         ###   ########.fr       */
+/*   Updated: 2025/12/19 22:32:40 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(void)
 		}
 		catch (std::exception &exceptValue)
 		{
-			std::cerr << "Exception: " << exceptValue.what() << std::endl;
+			std::cerr << "Exception: \t" << exceptValue.what() << std::endl;
 		}
 	}
 	{    
@@ -38,7 +38,7 @@ int	main(void)
 		}
 		catch (std::exception &exceptValue)
 		{
-			std::cerr << "Exception: " << exceptValue.what() << std::endl;
+			std::cerr << "Exception: \t" << exceptValue.what() << std::endl;
 		}
 	}
     {	

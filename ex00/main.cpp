@@ -6,7 +6,7 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 22:18:10 by juagomez          #+#    #+#             */
-/*   Updated: 2025/12/04 10:20:47 by juagomez         ###   ########.fr       */
+/*   Updated: 2025/12/19 22:34:06 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int main(void)
         }
         catch (std::exception &exceptValue)
         {
-            std::cerr << "Exception: " << exceptValue.what() << std::endl;
+            std::cerr << "Exception: \t" << exceptValue.what() << std::endl;
         }
         std::cout << std::endl;
     }
@@ -62,7 +62,7 @@ int main(void)
         }
         catch (std::exception &exceptValue)
         {
-            std::cerr << "Exception: " << exceptValue.what() << std::endl;
+            std::cerr << "Exception: \t" << exceptValue.what() << std::endl;
         }
         std::cout << std::endl;
     }
@@ -79,7 +79,7 @@ int main(void)
         }
         catch (std::exception &exceptValue)
         {
-            std::cerr << "Exception: " << exceptValue.what() << std::endl;
+            std::cerr << "Exception: \t" << exceptValue.what() << std::endl;
         }
         std::cout << std::endl;
     }
@@ -96,7 +96,7 @@ int main(void)
         }
         catch (std::exception &exceptValue)
         {
-            std::cerr << "Exception: " << exceptValue.what() << std::endl;
+            std::cerr << "Exception: \t" << exceptValue.what() << std::endl;
         }
         std::cout << std::endl;
     }
@@ -113,7 +113,7 @@ int main(void)
         
         manager1 = manager2;
         
-        std::cout << "\nAfter assignment:" << std::endl;
+        std::cout << std::endl << "After assignment:" << std::endl;
         std::cout << manager1;
         std::cout << manager2;
         std::cout << std::endl;
@@ -126,7 +126,7 @@ int main(void)
             Bureaucrat charlie("Charlie", 3);
             std::cout << std::endl;
             
-            std::cout << "Initial: " << charlie;            
+            std::cout << "Initial: " 		<< charlie;            
             charlie.incrementGrade(); 
             std::cout << "After increment: " << charlie;            
             charlie.incrementGrade(); 
@@ -136,7 +136,7 @@ int main(void)
         }
         catch (std::exception &exceptValue)
         {
-            std::cerr << "Exception: " << exceptValue.what() << std::endl;
+            std::cerr << "Exception: \t" << exceptValue.what() << std::endl;
         }
         std::cout << std::endl;
     }    
