@@ -6,7 +6,7 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 18:01:55 by juagomez          #+#    #+#             */
-/*   Updated: 2025/12/19 22:28:52 by juagomez         ###   ########.fr       */
+/*   Updated: 2025/12/19 22:44:39 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,24 +25,19 @@
 # define	NAME_CONSTRUCTOR_MSG	"Parametric Constructor: object created.\t"
 
 # define	MAKEFORM_OK				"Intern creates "
-# define	MAKEFORM_ERROR 			"Error: Intern could not creates "   // std::cerr (log)
-# define 	MAKEFORM_EXCEPTION		"Invalid form name"       			// what() (excepción)
+# define	MAKEFORM_ERROR 			"Error: Intern could not creates " 
+# define 	MAKEFORM_EXCEPTION		"Invalid form name"  
 
 class Intern
 {
 	public:
-		// forma canonica
 		Intern(void);
 		Intern(const Intern &instance);
 		Intern	&operator= (const Intern &instance);
 		~Intern(void);
-		// forma canonica
-		// constructor parametrico -> no
 
-		// metodos propios
 		AForm*	makeForm(const std::string &formName, const std::string &target);
 
-		// excepcion form no encontrado
 		class	FormNotExist: public std::exception
 		{
 			public:
