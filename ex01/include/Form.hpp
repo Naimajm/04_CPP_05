@@ -6,7 +6,7 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 11:12:01 by juagomez          #+#    #+#             */
-/*   Updated: 2026/03/02 15:24:06 by juagomez         ###   ########.fr       */
+/*   Updated: 2026/03/02 16:19:29 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ class Bureaucrat;
 # define 	FORM_MIN_GRADE			150
 # define 	FORM_MAX_GRADE			1
 
-# define 	FORM_ERROR_HIGH_GRADE	"Error: Form Grade is too high."
-# define 	FORM_ERROR_LOW_GRADE	"Error: Form Grade is too low."
+# define 	FORM_ERROR_HIGH_GRADE	"Error: Form grade requirement too high."
+# define 	FORM_ERROR_LOW_GRADE	"Error: Form grade requirement too low or Bureaucrat grade insufficient."
 # define 	FORM_ERROR_SIGNED		"Error: Form is already signed."
 
 class	Form
