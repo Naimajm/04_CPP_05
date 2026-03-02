@@ -6,7 +6,7 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 11:12:01 by juagomez          #+#    #+#             */
-/*   Updated: 2025/12/04 10:35:35 by juagomez         ###   ########.fr       */
+/*   Updated: 2026/03/02 15:24:06 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ class	Form
 		bool				_isSigned; 	 	
 		const int			_signGrade;		
 		const int			_executeGrade;	
+
+		static int			_validateGrade(int grade);
 };
 
 std::ostream	&operator<< (std::ostream &stream, const Form &instance);

@@ -6,7 +6,7 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 11:43:57 by juagomez          #+#    #+#             */
-/*   Updated: 2025/12/04 10:38:44 by juagomez         ###   ########.fr       */
+/*   Updated: 2026/03/02 15:32:34 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,9 @@ Form::~Form(void)
 Form::Form(const std::string &name, const int signGrade, const int executeGrade)
 :	_name(name), 
 	_isSigned(false), 
-	_signGrade(signGrade), 
-	_executeGrade(executeGrade)
+	_signGrade(_validateGrade(signGrade)), 
+	_executeGrade(_validateGrade(executeGrade))
 {
-	if (signGrade < FORM_MAX_GRADE || executeGrade < FORM_MAX_GRADE)
-		throw (GradeTooHighException());
-	if (signGrade > FORM_MIN_GRADE || executeGrade > FORM_MIN_GRADE)
-		throw (GradeTooLowException());
-
 	std::cout << FORM_ID << NAME_CONSTRUCTOR_MSG << this->_name << std::endl;	
 }
 
@@ -103,6 +98,16 @@ const char* Form::GradeTooLowException::what(void) const throw()
 const char* Form::FormAlreadySignedException::what(void) const throw()
 {
 	return (FORM_ERROR_SIGNED);
+}
+
+int Form::_validateGrade(int grade)
+{	
+	if (grade < FORM_MAX_GRADE)
+		throw (GradeTooHighException());
+
+	if (grade > FORM_MIN_GRADE)
+		throw (GradeTooLowException());
+	return (grade);
 }
 
 std::ostream	&operator<< (std::ostream &stream, const Form &instance)
