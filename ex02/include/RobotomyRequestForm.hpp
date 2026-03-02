@@ -6,7 +6,7 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/16 17:18:25 by juagomez          #+#    #+#             */
-/*   Updated: 2025/12/18 16:28:19 by juagomez         ###   ########.fr       */
+/*   Updated: 2026/03/02 22:35:12 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include "./AForm.hpp"
 
 #include <cstdlib>
-#include <ctime>
 
 # define ROBOTOMY_ID				"[Robotomy] \t"
 # define ROBOTOMY_DRILLING_NOISE	"* BZZZZZT BZZZZZT *"

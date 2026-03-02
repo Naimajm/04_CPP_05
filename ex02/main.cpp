@@ -6,7 +6,7 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 22:18:10 by juagomez          #+#    #+#             */
-/*   Updated: 2025/12/19 22:32:40 by juagomez         ###   ########.fr       */
+/*   Updated: 2026/03/02 22:35:24 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include "./include/ShrubberyCreationForm.hpp"
 #include "./include/RobotomyRequestForm.hpp"
 #include "./include/PresidentialPardonForm.hpp"
+
+#include <ctime>
 
 int	main(void)
 {

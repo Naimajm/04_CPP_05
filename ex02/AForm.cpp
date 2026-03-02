@@ -6,7 +6,7 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 12:20:14 by juagomez          #+#    #+#             */
-/*   Updated: 2025/12/18 16:30:56 by juagomez         ###   ########.fr       */
+/*   Updated: 2026/03/02 21:54:56 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,18 +53,10 @@ AForm::AForm(const std::string &name, const int signGrade,
 				const int executeGrade, const std::string &target)
 :	_name(name), 
 	_isSigned(false), 
-	_signGrade(signGrade), 
-	_executeGrade(executeGrade),
-	_target(target)
+	_signGrade(_validateGrade(signGrade)), 
+	_executeGrade(_validateGrade(executeGrade)),
+	_target(_validateTarget(target))
 {
-	if (this->validateTarget(target) == false)
-		throw (InvalidTargetException());
-
-	if (signGrade < AFORM_MAX_GRADE || executeGrade < AFORM_MAX_GRADE)
-		throw (GradeTooHighException());
-	if (signGrade > AFORM_MIN_GRADE || executeGrade > AFORM_MIN_GRADE)
-		throw (GradeTooLowException());
-
 	std::cout << AFORM_ID << NAME_CONSTRUCTOR_MSG << this->_name << std::endl;	
 }
 
@@ -88,16 +80,16 @@ int			AForm::getExecuteGrade(void) const
 	return (this->_executeGrade);
 }
 
-
 std::string	AForm::getTarget(void) const
 {
 	return (this->_target);
 }
 
-void		AForm::setTarget(std::string &target)
+void		AForm::setTarget(const std::string &target)
 {
-	this->_target = target;
+	this->_target = _validateTarget(target);
 }
+
 
 void		AForm::beSigned(Bureaucrat &bureaucrat)
 {
@@ -135,29 +127,36 @@ const char* AForm::InvalidTargetException::what(void) const throw()
 	return (AFORM_ERROR_TARGET);
 }
 
-bool		AForm::validateExecRequirements(const Bureaucrat &executor) const
+bool	AForm::validateExecRequirements(const Bureaucrat &executor) const
 {
 	if (this->_isSigned == false)
 		throw (AForm::NotSignedException());
 
 	if (this->_executeGrade < executor.getGrade())
 		throw (AForm::GradeTooLowException());
-
 	return (true);
 }
 
-bool	AForm::validateTarget(const std::string &target)
-{
-	if (target.empty())
-		return (false);
+int		AForm::_validateGrade(int grade)
+{	
+	if (grade < AFORM_MAX_GRADE)
+		throw (GradeTooHighException());
 
-	if (target.find("..") 	!= std::string::npos)
-		return (false);
-	if (target.find("/") 	!= std::string::npos)
-		return (false);
-	if (target.find("\\") 	!= std::string::npos) 
-		return (false);
-	return (true);
+	if (grade > AFORM_MIN_GRADE)
+		throw (GradeTooLowException());
+	return (grade);
+}
+
+std::string	AForm::_validateTarget(const std::string &target)
+{
+	if (target.empty() 
+		|| target.find("..") != std::string::npos
+		|| target.find("/")  != std::string::npos
+		|| target.find("\\") != std::string::npos
+		)
+		throw (InvalidTargetException());
+
+	return (target);
 }
 
 std::ostream	&operator<< (std::ostream &stream, const AForm &instance)
