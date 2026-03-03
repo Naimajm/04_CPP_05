@@ -6,7 +6,7 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 10:46:53 by juagomez          #+#    #+#             */
-/*   Updated: 2025/12/18 16:26:31 by juagomez         ###   ########.fr       */
+/*   Updated: 2026/03/03 11:33:00 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,8 @@ class AForm
                 virtual const char* what(void) const throw();
         };
 		
-	protected:
-		
+	protected:		
 		bool	validateExecRequirements(const Bureaucrat &executor) const;
-		bool	validateTarget(const std::string &target);
 	
 	private:
 		const std::string	_name;
@@ -102,6 +100,9 @@ class AForm
 		const int			_executeGrade;	
 
 		std::string			_target;
+
+		static int			_validateGrade(int grade);
+		static std::string	_validateTarget(const std::string &target);
 };
 
 std::ostream	&operator<< (std::ostream &stream, const AForm &instance);

@@ -6,7 +6,7 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 18:01:55 by juagomez          #+#    #+#             */
-/*   Updated: 2025/12/19 22:44:39 by juagomez         ###   ########.fr       */
+/*   Updated: 2026/03/03 12:07:21 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ class Intern
 		Intern(const Intern &instance);
 		Intern	&operator= (const Intern &instance);
 		~Intern(void);
+
+		typedef AForm*  (*FormConstructor)(const std::string& target);
 
 		AForm*	makeForm(const std::string &formName, const std::string &target);
 

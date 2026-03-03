@@ -6,7 +6,7 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/01 22:18:10 by juagomez          #+#    #+#             */
-/*   Updated: 2025/12/19 22:30:24 by juagomez         ###   ########.fr       */
+/*   Updated: 2026/03/03 12:06:00 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,12 @@ int	main(void)
 		try
 		{
 			Intern intern;
-			AForm* form = intern.makeForm("", "target");	
+			AForm* form = NULL;	
+
+			form = intern.makeForm("", "target");
 			
 			std::cout << *form << std::endl;
-			if (form)
-				delete form;
+			delete form;
 		}
 		catch(const std::exception& exceptValue)
 		{
@@ -42,9 +43,12 @@ int	main(void)
 		try
 		{
 			Intern intern;
-			AForm* form = intern.makeForm("robotomy request", "");
-			if (form)
-				delete form;
+			AForm* form = NULL;
+
+			form = intern.makeForm("robotomy request", "");
+			std::cout << *form << std::endl;
+
+			delete form;
 		}
 		catch(const std::exception& exceptValue)
 		{
@@ -56,21 +60,30 @@ int	main(void)
 
 		Intern intern;
 
-		AForm* shrub 	= intern.makeForm("shrubbery creation", "office");
-		AForm* robot 	= intern.makeForm("robotomy request", "R2-D2");
-		AForm* pardon	= intern.makeForm("presidential pardon", "Marvin");
-		std::cout << std::endl;
+		AForm* shrub	= NULL;
+		AForm* robot 	= NULL;
+		AForm* pardon	= NULL;
 
-		std::cout << *shrub << std::endl;
-		std::cout << *robot << std::endl;
-		std::cout << *pardon << std::endl;
+		try
+		{
+			shrub 	= intern.makeForm("shrubbery creation", "office");
+			robot 	= intern.makeForm("robotomy request", "R2-D2");
+			pardon	= intern.makeForm("presidential pardon", "Marvin");
+			std::cout << std::endl;
 
+			std::cout << *shrub << std::endl;
+			std::cout << *robot << std::endl;
+			std::cout << *pardon << std::endl;
+		}
+		catch(const std::exception &exceptValue)
+		{
+			std::cerr << "Exception: \t" << exceptValue.what() << std::endl;
+		}	
 		delete shrub;
 		delete robot;
 		delete pardon;
 		std::cout << std::endl;
 	}
-
 	{    
 		std::cout << "\n===== BUREAUCRAT CONSTRUCTION - INVALID GRADE  =====\n" << std::endl;   
 		try
@@ -145,7 +158,6 @@ int	main(void)
         boss.executeForm(shrub);
         std::cout << std::endl;
     }
-
     {
         std::cout << "\n===== ROBOTOMY - SUCCESSFUL EXECUTION =====\n" << std::endl;
         
@@ -198,7 +210,6 @@ int	main(void)
 		doctor.executeForm(robot);
         std::cout << std::endl;
     }
-
     {
         std::cout << "\n===== PRESIDENTIAL - SUCCESSFUL EXECUTION =====\n" << std::endl;
         
@@ -247,8 +258,7 @@ int	main(void)
         std::cout << pardon;        
         dictator.executeForm(pardon);
         std::cout << std::endl;
-    }
-	
+    }	
     {
         std::cout << "\n===== MIXED - ALL FORMS WITH ONE BUREAUCRAT =====\n" << std::endl;
         
@@ -273,7 +283,6 @@ int	main(void)
         master.executeForm(robot);
         master.executeForm(pardon);
         std::cout << std::endl;
-    }
-    
+    }    
     return (0);
 }

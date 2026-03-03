@@ -6,7 +6,7 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/04 10:46:53 by juagomez          #+#    #+#             */
-/*   Updated: 2026/03/02 20:43:36 by juagomez         ###   ########.fr       */
+/*   Updated: 2026/03/03 11:32:56 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,7 @@ class AForm
                 virtual const char* what(void) const throw();
         };
 		
-	protected:
-		
+	protected:		
 		bool	validateExecRequirements(const Bureaucrat &executor) const;
 	
 	private:

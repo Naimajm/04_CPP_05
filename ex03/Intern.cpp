@@ -6,7 +6,7 @@
 /*   By: juagomez <juagomez@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/19 18:02:15 by juagomez          #+#    #+#             */
-/*   Updated: 2025/12/19 22:46:58 by juagomez         ###   ########.fr       */
+/*   Updated: 2026/03/03 12:11:36 by juagomez         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ Intern::~Intern(void)
 }
 
 
-typedef AForm*  (*FormConstructor)(const std::string& target);
-
 static	AForm*	createShrubberyForm(const std::string &target)
 {
 	return (new ShrubberyCreationForm(target));
@@ -68,7 +66,7 @@ AForm*	Intern::makeForm(const std::string &formName, const std::string &target)
         "presidential pardon"
 	};
 
-	const FormConstructor arrayConstructors[3] = {
+	const Intern::FormConstructor arrayConstructors[3] = {
 		createShrubberyForm,		
 		createRobotomyForm,			
 		createPresidentialForm		
